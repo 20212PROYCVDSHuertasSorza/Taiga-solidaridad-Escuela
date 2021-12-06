@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.CategoryMapper">
+
+<select id="searchNumberCategory" parameterType="map" resultMap="CategoryResult">
+        select categories.idcategory ,categories.name , categories.description , categories.creationDate , categories.state ,categories.modificationDate from categories  
+          JOIN neccesities ON neccesities.idcategory = categories.idcategory
+        where categories.name= #{Category};
+    </select>
+    <select id="searchCategories" parameterType="map" resultMap="CategoryResult">
+        select * from categories;
+    </select>
+    <select id="searchCategory" parameterType="map" resultMap="CategoryResult">
+        select * from categories where name=#{name};
+    </select>
+    <insert parameterType="map" id="pushCategory">
+        insert into categories(idcategory,name,description,creationDate,state,modificationDate) values
+        (#{Category.idCategory},#{Category.name},#{Category.description},#{Category.creationDate},
+         #{Category.state},#{Category.modificationDate})
+    </insert>
+    <update id="update" parameterType="map">
+        update Categories set name=#{Category.name}, description=#{Category.description}, state=#{Category.state},
+        modificationState=CURRENT_DATE where name=#{aName}
+    </update>
+
+    <delete id="popCategory" parameterType="map">
+        DELETE from Categories where name=#{name} and idcategory=#{idCategory};
+    </delete>
+    <resultMap id="CategoryResult" type="Category">
+        <id property="idCategory" column="idcategory"/>
+        <result property="name" column="name"/>
+        <result property="description" column="descritcion"/>
+        <result property="creationDate" column="creationDate"/>
+        <result property="state" column="state"/>
+        <result property="modificationDate" column="modificationDate"/>
+    </resultMap>
+</mapper>

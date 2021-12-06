@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.OffersMapper">
+    <select id="searchOffers" parameterType="map" resultMap="OffersResult">
+        select * from offers;
+    </select>
+
+    <select id="searchNumeroOffersState" parameterType="map" resultMap="OffersforStateResult">
+        select * from offers
+        WHERE #{state} = offers.state;
+
+    </select>
+
+    <insert parameterType="map" id="pushOffers">
+        insert into offers(idoffer,idcategory,name,description,creationDate,state,modificationDate,nickname) values
+        (#{offers.idOffers},#{offers.idCategory},#{offers.name},#{offers.description},#{offers.creationDate},
+        #{offers.state},#{offers.modificationDate},#{offers.nickname})
+    </insert>
+
+    <select id="searchOffer" parameterType="map" resultMap="OfferResult">
+        select * from offers where name=#{name};
+    </select>
+
+    <update id="updateState" parameterType="map">
+        update offers set state=#{state} ,modificationDate=CURRENT_DATE where name=#{offersName}
+    </update>
+
+
+    <resultMap id="OffersResult" type="Offers" >
+        <id property="idOffers" column="idoffer"/>
+            <result property="idCategory" column="idcategory"/>
+            <result property="name" column="name" />
+            <result property="description" column="description" />
+            <result property="creationDate" column="creationDate" />
+            <result property="state" column="state" />
+            <result property="modificationDate" column="modificationDate" />
+            <result property="nickname" column="nickname" />
+    </resultMap>
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.AnswersMapper">
+
+
+
+    <select id="searchAnswers" parameterType="map" resultMap="AnswersResult">
+        select * from answers;
+    </select>
+     <select id="searchAnswer" parameterType="map" resultMap="AnswerResult">
+        select * from answers where name=#{name};
+    </select>
+    <insert parameterType="map" id="PushAnswers">
+        insert into answers(idanswer, offer,neccesity,name,comments,creationDate,nickname) values
+        (#{answers.idAnswer},#{answers.offer},#{answers.neccesity},#{answers.name},#{answers.comments},#{answers.creationDate},
+        #{answers.nickname})
+    </insert>
+    
+    <resultMap id="AnswersResult" type="Answers">
+        <id property="idAnswer" column="idanswer"/>
+        <result property="offer" column="offer"/>
+        <result property="neccesity" column="neccesity"/>
+        <result property="name" column="name"/>
+        <result property="comments" column="comments"/>
+        <result property="creationDate" column="creationDate"/>
+        <result property="nickname" column="nickname"/>
+    </resultMap>
+</mapper>

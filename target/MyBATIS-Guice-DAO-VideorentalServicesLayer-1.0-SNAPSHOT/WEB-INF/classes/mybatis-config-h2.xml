@@ -1,0 +1,29 @@
+<configuration>
+	<properties resource="config.properties">
+	</properties>
+	<!-- <typeAliases>
+		<typeAlias alias="Category" type="edu.eci.cvds.samples.entities.Category"/>
+		<typeAlias alias="Neccesities" type="edu.eci.cvds.samples.entities.Neccesities"/>
+		<typeAlias alias="Offers" type="edu.eci.cvds.samples.entities.Offers"/>
+		<typeAlias alias="Answers" type="edu.eci.cvds.samples.entities.Answers"/>
+		<typeAlias alias="Rol" type="edu.eci.cvds.samples.entities.Rol"/>
+		
+	</typeAliases> -->
+	<environments default="test">
+		<environment id="test">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="org.h2.Driver" />
+                <property name="url" value="jdbc:h2:file:./target/db/testdb;MODE=PostgreSQL" />
+                <property name="username" value="user" />
+                <property name="password" value="" />
+			</dataSource>
+		</environment>
+	</environments>
+	<!-- <mappers>
+		<mapper resource="mappers/CategoryMapper.xml"/>
+		<mapper resource="mappers/NeccesitiesMapper.xml"/>
+        <mapper resource="mappers/OffersMapper.xml"/>
+		<mapper resource="mappers/AnswersMapper.xml"/>
+	</mappers> -->
+</configuration>

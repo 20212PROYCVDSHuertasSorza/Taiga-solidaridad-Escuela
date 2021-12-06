@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.NeccesitiesMapper">
+    <insert parameterType="map" id="pushNeccesities">
+        insert into neccesities(idneccesity,idcategory,name,description,urgency,creationDate,state,modificationDate,nickname) values
+        (#{neccesities.idNeccesity},#{neccesities.idCategory},#{neccesities.name},#{neccesities.description},#{Neccesities.urgency},#{neccesities.creationDate},
+         #{neccesities.state},#{neccesities.modificationDate},#{neccesities.nickname})
+    </insert>
+      <select id="searchNumberNeccesitiesState" parameterType="map" resultMap="NeccesitiesStateResult">
+    select * from neccesities 
+    WHERE #{state} = neccesities.state;
+    
+
+    </select>
+    <select id="searchNeccesities" parameterType="map" resultMap="NeccesitiesResult">
+        select * from neccesities;
+    </select>
+    <select id="searchNeccesity" parameterType="map" resultMap="NeccesityResult">
+        select * from neccesities where name=#{name};
+    </select>
+
+    <update id="updateState" parameterType="map">
+        update neccesities set state=#{state} ,  modificationDate=CURRENT_DATE where name=#{neccesitiesName}
+    </update>
+    
+    <resultMap id="neccesityResult" type="Neccesties">
+        <id property="idNeccesity" column="idneccesity"/>
+        <result property="idCategory" column="idcategory"/>
+        <result property="name" column="name"/>
+        <result property="description" column="description"/>
+        <result property="urgency" column="urgency"/>
+        <result property="creationDate" column="creationDate"/>
+        <result property="state" column="state"/>
+        <result property="modificationDate" column="modificationDate"/>
+        <result property="nickname" column="nickname"/>
+    </resultMap>
+</mapper>

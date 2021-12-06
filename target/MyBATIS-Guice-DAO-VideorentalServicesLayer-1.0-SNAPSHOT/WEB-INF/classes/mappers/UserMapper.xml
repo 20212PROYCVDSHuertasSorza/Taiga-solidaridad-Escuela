@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.UserMapper">
+
+    <select id="searchUsers" parameterType="map" resultMap="UsersResult">
+        select * from users;
+    </select>
+    <select id="searchUser" parameterType="map" resultMap="UserResult">
+        select * from users where email=#{email};
+    </select>
+
+    <resultMap id="UserResult" type="User">
+        <id property="nickname" column="nickname"/>
+        <result property="name" column="name"/>
+        <result property="lastname" column="lastname"/>
+        <result property="email" column="email"/>
+        <result property="state" column="state"/>
+        <result property="idrol" column="idrol"/>
+    </resultMap>
+</mapper>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+  
+<configuration>
+	<properties resource="config.properties">
+	</properties>
+
+
+	<typeAliases>
+		<typeAlias alias="Category" type="edu.eci.cvds.samples.entities.Category"/>
+    <typeAlias alias="Neccesities" type="edu.eci.cvds.samples.entities.Neccesities"/>
+		<typeAlias alias="Answers" type="edu.eci.cvds.samples.entities.Answers"/>
+    <typeAlias alias="Offers" type="edu.eci.cvds.samples.entities.Offers"/>
+		<typeAlias alias="InvalidCategory" type="edu.eci.cvds.samples.entities.InvalidCategory"/>
+	<typeAlias alias="User" type="edu.eci.cvds.samples.entities.User"/>
+		<!--
+		<typeAlias alias="Offers" type="edu.eci.cvds.samples.entities.Offers"/>
+		<typeAlias alias="Rol" type="edu.eci.cvds.samples.entities.Rol"/>-->
+	</typeAliases>
+
+
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}"/> 
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+
+
+		<mapper resource="mappers/CategoryMapper.xml"/>
+    <mapper resource="mappers/NeccesitiesMapper.xml"/>
+		<mapper resource="mappers/AnswersMapper.xml"/>
+    <mapper resource="mappers/OffersMapper.xml"/>
+		<mapper resource="mappers/InvalidCategoryMapper.xml"/>
+	<mapper resource="mappers/UserMapper.xml"/>
+		<!--
+        <mapper resource="mappers/OffersMapper.xml"/>
+		-->
+	</mappers>
+</configuration>
+
